@@ -7,6 +7,9 @@ public class Utilisateur extends Compte{
     protected String login, password;
     protected BoiteMessage boiteReception;
 
+    /**
+     * Constructeur de la classe Utilisateur
+     */
     public Utilisateur(String login, String password) {
         this.login = login;
         this.password = password;
