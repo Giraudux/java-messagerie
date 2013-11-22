@@ -12,4 +12,10 @@ public class BoiteMessage {
     public BoiteMessage(){
         messages = new LinkedList<Message>();
     }
+
+    //todo: taille limite boite
+    public void addMessage(Message message)
+    {
+        messages.add(message);
+    }
 }

@@ -1,5 +1,7 @@
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Classe Message
@@ -7,11 +9,12 @@ import java.util.List;
  * @version 1.0
  */
 public class Message {
-    private List<Compte> destinataires;
+    private Set<Compte> destinataires;
+    private Utilisateur emetteur;
 
     public Message()
     {
-        destinataires = new LinkedList<Compte>();
+        destinataires = new LinkedHashSet<Compte>();
         //todo: ajouter destinataire
     }
 }

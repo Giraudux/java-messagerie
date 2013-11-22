@@ -5,7 +5,7 @@
  */
 public class SuperUtilisateur extends Utilisateur {
 
-    public SuperUtilisateur(String login, String password) {
-        super(login, password);
+    public SuperUtilisateur(String adresse, String password) {
+        super("root" , adresse, password);
     }
 }
