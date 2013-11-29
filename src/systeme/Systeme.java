@@ -1,8 +1,12 @@
+package systeme;
+
+import compte.*;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Classe Systeme
+ * Classe systeme.Systeme
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
  */

@@ -1,8 +1,10 @@
+package messagerie;
+
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Classe BoiteMessage
+ * Classe messagerie.BoiteMessage
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
  */

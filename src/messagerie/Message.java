@@ -1,10 +1,13 @@
+package messagerie;
+
+import compte.Compte;
+import compte.Utilisateur;
+
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 /**
- * Classe Message
+ * Classe messagerie.Message
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
  */
