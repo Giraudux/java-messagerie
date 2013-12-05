@@ -26,8 +26,13 @@ public class Utilisateur extends Compte{
         listesDiffusion = new LinkedHashSet<ListeDiffusion>();
     }
 
-    public void envoyerMessage(Message message, Compte compte)
+	public String getLogin(){
+		return login;
+	} 
+
+    public void envoyerMessage(Message message)
     {
+		Compte compte = message.getDestinataires();
         for(Utilisateur utilisateur : compte.getUtilisateurs())
         {
             utilisateur.recevoirMessage(message);
@@ -38,6 +43,10 @@ public class Utilisateur extends Compte{
     {
         boiteReception.addMessage(message);
     }
+
+	public String listerMessages(){
+		return "Bonjour "+login+",\n"+this.boiteReception.listerMessages();
+	}
 
     @Override
     public Set<Utilisateur> getUtilisateurs() {

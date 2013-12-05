@@ -20,4 +20,19 @@ public class BoiteMessage {
     {
         messages.add(message);
     }
+    
+    //affiche tous les sujets des messages
+    public String listerMessages(){
+		String liste = "Bienvenue dans votre boite de réception \n";
+		if(!messages.isEmpty()){
+			for(Message m : messages){
+				liste+=	"Envoyé par "+m.getEmetteur().getLogin()+" | Sujet: "+m.getSujet()+"\n";
+			}
+			liste+="Fin des messages.\n";
+		}
+		else{
+			liste+="Vous n'avez aucun message...\n";
+		}
+		return liste;
+	}
 }

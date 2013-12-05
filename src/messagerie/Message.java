@@ -12,12 +12,29 @@ import java.util.Set;
  * @version 1.0
  */
 public class Message {
-    private Set<Compte> destinataires;
+    private Compte destinataires;
     private Utilisateur emetteur;
+    private String sujet;
+    private String contenu;
 
-    public Message()
+    public Message(Utilisateur emetteur,Compte destinataires,String sujet,String contenu)
     {
-        destinataires = new LinkedHashSet<Compte>();
-        //todo: ajouter destinataire
+        this.destinataires = destinataires;
+        this.emetteur=emetteur;
+        this.sujet=sujet;
+        this.contenu=contenu;       
     }
+    
+    public Compte getDestinataires(){
+		return this.destinataires;
+	}
+    
+    public Utilisateur getEmetteur(){
+		return emetteur;	
+	}
+	
+	public String getSujet(){
+		return sujet;
+	}
+
 }
