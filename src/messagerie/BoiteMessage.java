@@ -25,8 +25,10 @@ public class BoiteMessage {
     public String listerMessages(){
 		String liste = "Bienvenue dans votre boite de réception \n";
 		if(!messages.isEmpty()){
+            int i=0;
 			for(Message m : messages){
-				liste+=	"Envoyé par "+m.getEmetteur().getLogin()+" | Sujet: "+m.getSujet()+"\n";
+				liste+=	i+" - Envoyé par "+m.getEmetteur().getLogin()+" | Sujet: "+m.getSujet()+"\n";
+                i++;
 			}
 			liste+="Fin des messages.\n";
 		}
@@ -35,4 +37,13 @@ public class BoiteMessage {
 		}
 		return liste;
 	}
+
+    public String afficherMessage(int i) {
+        try {
+            return messages.get(i).toString();
+        }
+        catch (IndexOutOfBoundsException e) {
+            return "Ce message n'existe pas.";
+        }
+    }
 }

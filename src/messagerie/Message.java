@@ -37,4 +37,8 @@ public class Message {
 		return sujet;
 	}
 
+    public String toString() {
+        return "Emetteur : "+emetteur.getAdresse()+"\nDestinataires : "+destinataires.getAdresse()+"\n+Sujet : "+sujet+"\n\n"+contenu;
+    }
+
 }

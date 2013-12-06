@@ -66,6 +66,22 @@ public class Utilisateur extends Compte{
         return listesDiffusion.add(listeDiffusion);
     }
 
+    public boolean ajouterCompteListeDiffusion(ListeDiffusion listeDiffusion, Compte compte){
+        return listeDiffusion.ajouterCompte(compte);
+    }
+
+    public boolean supprimerCompteListeDiffusion(ListeDiffusion listeDiffusion,Compte compte){
+        //todo: tester si createur de la liste
+        if(listesDiffusion.contains(listeDiffusion))
+        {
+            return listeDiffusion.supprimerCompte(compte);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion)
     {
         return listesDiffusion.remove(listeDiffusion);

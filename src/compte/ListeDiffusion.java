@@ -11,6 +11,7 @@ import java.util.Set;
 public class ListeDiffusion extends Compte{
 
     private Set<Compte> comptes;
+    //todo: ajouter attribuer createur
 
     public ListeDiffusion(String adresse) {
         super(adresse);
@@ -21,16 +22,11 @@ public class ListeDiffusion extends Compte{
     public Set<Utilisateur> getUtilisateurs()
     {
         Set<Utilisateur> utilisateurs = new LinkedHashSet<Utilisateur>();
-        Set<String> listesDiffusions = new LinkedHashSet<String>();
         for(Compte compte : comptes)
         {
-            if(!(compte instanceof ListeDiffusion && listesDiffusions.contains(compte.getAdresse())))
+            if(!(compte instanceof ListeDiffusion))
             {
                 utilisateurs.addAll(compte.getUtilisateurs());
-                if(compte instanceof ListeDiffusion)
-                {
-                    listesDiffusions.add(compte.getAdresse());
-                }
             }
         }
         return utilisateurs;
@@ -43,7 +39,21 @@ public class ListeDiffusion extends Compte{
 
     public boolean ajouterCompte(Compte compte)
     {
-        return comptes.add(compte);
+        if(compte instanceof ListeDiffusion)
+        {
+            if(compte.contient(this))
+            {
+                return false;
+            }
+            else
+            {
+                return comptes.add(compte);
+            }
+        }
+        else
+        {
+            return comptes.add(compte);
+        }
     }
 
     public boolean supprimerCompte(Compte compte)
