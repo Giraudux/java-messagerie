@@ -29,6 +29,10 @@ public class Utilisateur extends Compte{
 	public String getLogin(){
 		return login;
 	} 
+	
+	public String getPassword(){
+		return password;
+	} 
     //todo vérification liste restreinte ou non
     public void envoyerMessage(Message message)
     {
@@ -96,6 +100,13 @@ public class Utilisateur extends Compte{
         return equals(compte);
     }
 
+
+	@Override
+	public int hashCode() {
+		return login.hashCode();
+	}
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,5 +119,9 @@ public class Utilisateur extends Compte{
 
         return true;
     }
+
+
+    
+    
 }
 

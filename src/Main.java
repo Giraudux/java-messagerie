@@ -10,29 +10,39 @@ import systeme.*;
 public class Main {
 	
 	public static void main(String[] args) {
-		Systeme webmail = new Systeme("root@systeme.fr","toor");
 		
+		SuperUtilisateur root = new SuperUtilisateur("root","root@systeme.fr","toor");
+		Systeme webmail = new Systeme(root.getLogin(),root.getPassword());
+				
 		Utilisateur user1 = new Utilisateur("François","francois@systeme.fr","azerty");
 		Utilisateur user2 = new Utilisateur("Alexis","alexis@systeme.fr","azerty");
 		Utilisateur user3 = new Utilisateur("Eric","eric@systeme.fr","azerty");
 		Utilisateur user4 = new Utilisateur("Pierre","pierre@systeme.fr","azerty");
 		Utilisateur user5 = new Utilisateur("Seb","seb@systeme.fr","azerty");
-		
-	    if(webmail.addUtilisateur(user1))
+		Utilisateur user6 = new Utilisateur("Seb","seb@systeme.fr","azerty");
+	    if(webmail.addUtilisateur(user1,root))
 	    	System.out.println("ajout user1 ok");
 	    
-	    if(webmail.addUtilisateur(user2))
+	    if(webmail.addUtilisateur(user2,root))
 	    	System.out.println("ajout user2 ok");
 	    
-	    if(webmail.addUtilisateur(user3))
+	    if(webmail.addUtilisateur(user3,root))
 	    	System.out.println("ajout user3 ok");
 	    
-	    if(webmail.addUtilisateur(user4))
+	    if(webmail.addUtilisateur(user4,root))
 	    	System.out.println("ajout user4 ok");
 	    
-	    if(webmail.addUtilisateur(user5))
+	    if(webmail.addUtilisateur(user5,root))
 	    	System.out.println("ajout user5 ok");
-	
+	  
+	    
+	    if(webmail.addUtilisateur(user1,root))
+	    	System.out.println("ajout user1 ok");
+	    
+
+	    if(webmail.addUtilisateur(user6,root))
+	    	System.out.println("ajout user6 ok");
+	/*
 		Message message = new Message(user1,user3,"holla","Salut poto éric !");
 		user1.envoyerMessage(message);
 		
@@ -84,7 +94,7 @@ public class Main {
         System.out.println(user2.listerMessages());
         System.out.println(user3.listerMessages());
         System.out.println(user4.listerMessages());
-        System.out.println(user5.listerMessages());
+        System.out.println(user5.listerMessages());*/
 
 	}	
 	
