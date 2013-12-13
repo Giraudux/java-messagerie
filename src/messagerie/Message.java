@@ -2,9 +2,7 @@ package messagerie;
 
 import compte.Compte;
 import compte.Utilisateur;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Calendar;
 
 /**
  * Classe messagerie.Message
@@ -16,13 +14,15 @@ public class Message {
     private Utilisateur emetteur;
     private String sujet;
     private String contenu;
+    private Calendar date;
 
     public Message(Utilisateur emetteur,Compte destinataires,String sujet,String contenu)
     {
         this.destinataires = destinataires;
         this.emetteur=emetteur;
         this.sujet=sujet;
-        this.contenu=contenu;       
+        this.contenu=contenu;
+        date = Calendar.getInstance();
     }
     
     public Compte getDestinataires(){

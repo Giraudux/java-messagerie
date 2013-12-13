@@ -7,8 +7,8 @@ package compte;
  */
 public class SuperUtilisateur extends Utilisateur {
 
-    public SuperUtilisateur(String adresse, String password) {
-        super("root" , adresse, password);
+    public SuperUtilisateur(String login, String adresse, String password) {
+        super(login , adresse, password);
     }
 
     @Override

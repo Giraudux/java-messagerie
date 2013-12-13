@@ -9,13 +9,14 @@ import java.util.Set;
  * @version 1.0
  */
 public class ListeDiffusion extends Compte{
-
+    private boolean restreint;
     private Set<Compte> comptes;
-    //todo: ajouter attribuer createur
+    private Utilisateur createur;
 
-    public ListeDiffusion(String adresse) {
+    public ListeDiffusion(String adresse, boolean restreint) {
         super(adresse);
         this.comptes = new LinkedHashSet<Compte>();
+        this.restreint = restreint;
     }
 
     @Override
@@ -76,5 +77,13 @@ public class ListeDiffusion extends Compte{
             }
         }
         return false;
+    }
+
+    public boolean isCreateur(Utilisateur utilisateur) {
+        return utilisateur.equals(createur);
+    }
+
+    public boolean isRestreint() {
+        return restreint;
     }
 }

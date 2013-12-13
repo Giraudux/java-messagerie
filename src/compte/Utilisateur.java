@@ -13,7 +13,7 @@ import java.util.Set;
 public class Utilisateur extends Compte{
     protected String login, password;
     protected BoiteMessage boiteReception;
-    protected Set<ListeDiffusion> listesDiffusion;
+    //protected Set<ListeDiffusion> listesDiffusion;
 
     /**
      * Constructeur de la classe compte.Utilisateur
@@ -23,13 +23,13 @@ public class Utilisateur extends Compte{
         this.login = login;
         this.password = password;
         this.boiteReception = new BoiteMessage();
-        listesDiffusion = new LinkedHashSet<ListeDiffusion>();
+        //listesDiffusion = new LinkedHashSet<ListeDiffusion>();
     }
 
 	public String getLogin(){
 		return login;
 	} 
-
+    //todo vérification liste restreinte ou non
     public void envoyerMessage(Message message)
     {
 		Compte compte = message.getDestinataires();
@@ -61,7 +61,9 @@ public class Utilisateur extends Compte{
         return login+" : "+adresse;
     }
 
-    public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion)
+
+
+/*    public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion)
     {
         return listesDiffusion.add(listeDiffusion);
     }
@@ -71,8 +73,7 @@ public class Utilisateur extends Compte{
     }
 
     public boolean supprimerCompteListeDiffusion(ListeDiffusion listeDiffusion,Compte compte){
-        //todo: tester si createur de la liste
-        if(listesDiffusion.contains(listeDiffusion))
+        if(listeDiffusion.isCreateur(this) || this instanceof SuperUtilisateur)
         {
             return listeDiffusion.supprimerCompte(compte);
         }
@@ -82,15 +83,30 @@ public class Utilisateur extends Compte{
         }
     }
 
-    public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion)
+    public boolean desabonnerListeDiffusion(ListeDiffusion listeDiffusion)
     {
         return listesDiffusion.remove(listeDiffusion);
     }
+
+  */
 
     @Override
     public boolean contient(Compte compte)
     {
         return equals(compte);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Utilisateur)) return false;
+        if (!super.equals(o)) return false;
+
+        Utilisateur that = (Utilisateur) o;
+
+        if (login != null ? !login.equals(that.login) : that.login != null) return false;
+
+        return true;
     }
 }
 
