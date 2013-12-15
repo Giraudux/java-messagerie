@@ -2,52 +2,90 @@ package compte;
 
 import messagerie.*;
 
+import javax.rmi.CORBA.Util;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * Classe compte.Utilisateur
+ *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
  */
-public class Utilisateur extends Compte{
-    protected String login, password;
+public class Utilisateur extends Compte {
+    protected String name, login, password;
     protected BoiteMessage boiteReception;
     //protected Set<ListeDiffusion> listesDiffusion;
 
     /**
-     * Constructeur de la classe compte.Utilisateur
+     * @param name
+     * @param login
+     * @param adresse
+     * @param password
      */
-    public Utilisateur(String login, String adresse, String password) {
+    public Utilisateur(String name, String login, String adresse, String password) {
         super(adresse);
+        this.name = name;
         this.login = login;
         this.password = password;
         this.boiteReception = new BoiteMessage();
         //listesDiffusion = new LinkedHashSet<ListeDiffusion>();
     }
 
-	public String getLogin(){
-		return login;
-	} 
-    //todo vérification liste restreinte ou non
-    public void envoyerMessage(Message message)
-    {
-		Compte compte = message.getDestinataires();
-        for(Utilisateur utilisateur : compte.getUtilisateurs())
-        {
+    /**
+     * @return
+     */
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * @return
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param message
+     */
+    public static void envoyerMessage(Message message) {
+        Set<Utilisateur> destinataires = new LinkedHashSet<Utilisateur>();
+        for (Compte compte : message.getDestinataires()) {
+            if (compte instanceof Utilisateur) {
+                destinataires.add((Utilisateur) compte);
+            } else if (compte instanceof ListeDiffusion) {
+                Set<Utilisateur> tmp = new LinkedHashSet<Utilisateur>();
+                if ((!((ListeDiffusion) compte).isRestreint()) || (message.getEmetteur() instanceof SuperUtilisateur) || (compte.contient(message.getEmetteur()))) {
+                    destinataires.addAll(compte.getUtilisateurs());
+                }
+                tmp.remove(message.getEmetteur());
+                destinataires.addAll(tmp);
+            }
+        }
+
+        for (Utilisateur utilisateur : destinataires) {
             utilisateur.recevoirMessage(message);
         }
     }
 
-    public void recevoirMessage(Message message)
-    {
+    /**
+     * @param message
+     */
+    public void recevoirMessage(Message message) {
         boiteReception.addMessage(message);
     }
 
-	public String listerMessages(){
-		return "Bonjour "+login+",\n"+this.boiteReception.listerMessages();
-	}
+    /**
+     * @return
+     */
+    public String listerMessages() {
+        return "Bonjour " + login + ",\n" + this.boiteReception.listerMessages();
+    }
 
+    /**
+     * @return
+     */
     @Override
     public Set<Utilisateur> getUtilisateurs() {
         Set<Utilisateur> res = new LinkedHashSet<Utilisateur>();
@@ -55,47 +93,27 @@ public class Utilisateur extends Compte{
         return res;
     }
 
+    /**
+     * @return
+     */
     @Override
-    public String toString()
-    {
-        return login+" : "+adresse;
+    public String toString() {
+        return login + " : " + adresse;
     }
 
-
-
-/*    public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion)
-    {
-        return listesDiffusion.add(listeDiffusion);
-    }
-
-    public boolean ajouterCompteListeDiffusion(ListeDiffusion listeDiffusion, Compte compte){
-        return listeDiffusion.ajouterCompte(compte);
-    }
-
-    public boolean supprimerCompteListeDiffusion(ListeDiffusion listeDiffusion,Compte compte){
-        if(listeDiffusion.isCreateur(this) || this instanceof SuperUtilisateur)
-        {
-            return listeDiffusion.supprimerCompte(compte);
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public boolean desabonnerListeDiffusion(ListeDiffusion listeDiffusion)
-    {
-        return listesDiffusion.remove(listeDiffusion);
-    }
-
-  */
-
+    /**
+     * @param compte
+     * @return
+     */
     @Override
-    public boolean contient(Compte compte)
-    {
+    public boolean contient(Compte compte) {
         return equals(compte);
     }
 
+    /**
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,4 +127,3 @@ public class Utilisateur extends Compte{
         return true;
     }
 }
-

@@ -4,28 +4,40 @@ import java.util.Set;
 
 /**
  * Classe compte.Compte
+ *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
  */
 public abstract class Compte implements Comparable<Compte> {
     protected String adresse;
 
+    /**
+     * @param adresse
+     */
     public Compte(String adresse) {
         this.adresse = adresse;
     }
 
-    public String getAdresse()
-    {
+    /**
+     * @return
+     */
+    public String getAdresse() {
         return adresse;
     }
 
-
-
+    /**
+     * @param compte
+     * @return
+     */
     @Override
     public int compareTo(Compte compte) {
         return adresse.compareTo(compte.getAdresse());
     }
 
+    /**
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,8 +50,20 @@ public abstract class Compte implements Comparable<Compte> {
         return true;
     }
 
+    /**
+     * @return
+     */
     @Override
     public abstract String toString();
+
+    /**
+     * @return
+     */
     public abstract Set<Utilisateur> getUtilisateurs();
+
+    /**
+     * @param compte
+     * @return
+     */
     public abstract boolean contient(Compte compte);
 }
