@@ -15,7 +15,6 @@ import java.util.Set;
 public class Utilisateur extends Compte {
     protected String name, login, password;
     protected BoiteMessage boiteReception;
-    //protected Set<ListeDiffusion> listesDiffusion;
 
     /**
      * @param name
@@ -29,7 +28,6 @@ public class Utilisateur extends Compte {
         this.login = login;
         this.password = password;
         this.boiteReception = new BoiteMessage();
-        //listesDiffusion = new LinkedHashSet<ListeDiffusion>();
     }
 
     /**

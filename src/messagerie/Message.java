@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Classe messagerie.Message
+ * La classe Message représente un message sous la forme: sujet, date, contenu, émetteur et destinataires.
  *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
@@ -22,10 +22,12 @@ public class Message {
     private Calendar date;
 
     /**
-     * @param emetteur
-     * @param destinataires
-     * @param sujet
-     * @param contenu
+     * Constructeur de la classe Message, crée un nouveau message avec un émetteur, un sujet, des destinataires et un contenu (initialise la date au moment de la création du message).
+     *
+     * @param emetteur      l'émetteur du message
+     * @param destinataires les destinataires du message
+     * @param sujet         le sujet du message
+     * @param contenu       le contenu du message
      */
     public Message(Utilisateur emetteur, Collection<Compte> destinataires, String sujet, String contenu) {
         this.destinataires = new LinkedHashSet<Compte>(destinataires);
@@ -36,35 +38,45 @@ public class Message {
     }
 
     /**
-     * @return
+     * Retourne les destinataires du message.
+     *
+     * @return les destinataires du message
      */
     public Set<Compte> getDestinataires() {
         return this.destinataires;
     }
 
     /**
-     * @return
+     * Retourne l'émetteur du message.
+     *
+     * @return l'émetteur du message
      */
     public Utilisateur getEmetteur() {
         return emetteur;
     }
 
     /**
-     * @return
+     * Retourne le sujet du message.
+     *
+     * @return le sujet du message
      */
     public String getSujet() {
         return sujet;
     }
 
     /**
-     * @return
+     * Retourne la date de création du message.
+     *
+     * @return la date de création du message
      */
     public Calendar getDate() {
         return date;
     }
 
     /**
-     * @return
+     * Retourne l'ensemble des informations du message sous forme de chaîne de caractères.
+     *
+     * @return le message sous forme de chaîne de caractères
      */
     public String toString() {
         StringBuilder res = new StringBuilder();

@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Classe messagerie.BoiteMessage
+ * La classe BoiteMessage permet de stoquer les messages des utilisateurs.
+ * Il est possible d'ajouter, afficher un message et de trier et lister l'ensemble des messages.
  *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
@@ -19,28 +20,32 @@ public class BoiteMessage {
     List<Message> messages;
 
     /**
-     *
+     * Constructeur de la classe BoiteMessage, crée une nouvelle boîte de méssages vide.
      */
     public BoiteMessage() {
         messages = new LinkedList<Message>();
     }
 
     /**
-     * @param message
+     * Ajoute un message à la boîte.
+     *
+     * @param message le message à ajouter
      */
     public void addMessage(Message message) {
         messages.add(message);
     }
 
     /**
-     * @return
+     * Retourne la liste les messages de la boîte sous la forme "| De: émetteur du message | Date: date d'envoi | Sujet: sujet du message".
+     *
+     * @return la liste des messages de la boîte
      */
     public String listerMessages() {
         String liste = "Bienvenue dans votre boite de réception.\n";
         if (!messages.isEmpty()) {
             int i = 0;
             for (Message m : messages) {
-                liste += i + "| De: " + m.getEmetteur().getAdresse() + " | Date: "+ m.getDate().toString() +  " | Sujet: " + m.getSujet() + "\n";
+                liste += i + "| De: " + m.getEmetteur().getAdresse() + " | Date: " + m.getDate().toString() + " | Sujet: " + m.getSujet() + "\n";
                 i++;
             }
             liste += "Fin des messages.\n";
@@ -51,8 +56,10 @@ public class BoiteMessage {
     }
 
     /**
-     * @param i
-     * @return
+     * Retourne le ième message de la boîte.
+     *
+     * @param i indice du message à retourner
+     * @return ième message de la boîte
      */
     public String afficherMessage(int i) {
         try {
@@ -63,7 +70,9 @@ public class BoiteMessage {
     }
 
     /**
-     * @param comparator
+     * Tri les message de la boîte selon l'ordre (Comparator) passé en paramètre.
+     *
+     * @param comparator l'ordre de tri
      */
     public void trierMessages(Comparator<Message> comparator) {
         Collections.sort(messages, comparator);

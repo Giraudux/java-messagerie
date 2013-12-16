@@ -12,6 +12,7 @@ import java.util.Set;
  * @version 1.0
  */
 public class Systeme {
+    public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
     private Set<Utilisateur> utilisateurs;
     private Set<ListeDiffusion> listesDiffusion;
 
