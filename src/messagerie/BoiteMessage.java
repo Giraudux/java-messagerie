@@ -36,16 +36,16 @@ public class BoiteMessage {
      * @return
      */
     public String listerMessages() {
-        String liste = "Bienvenue dans votre boite de réception \n";
+        String liste = "Bienvenue dans votre boite de réception.\n";
         if (!messages.isEmpty()) {
             int i = 0;
             for (Message m : messages) {
-                liste += i + " - Envoyé par " + m.getEmetteur().getLogin() + " | Sujet: " + m.getSujet() + "\n";
+                liste += i + "| De: " + m.getEmetteur().getAdresse() + " | Date: "+ m.getDate().toString() +  " | Sujet: " + m.getSujet() + "\n";
                 i++;
             }
             liste += "Fin des messages.\n";
         } else {
-            liste += "Vous n'avez aucun message...\n";
+            liste += "Vous n'avez aucun message.\n";
         }
         return liste;
     }
@@ -62,6 +62,9 @@ public class BoiteMessage {
         }
     }
 
+    /**
+     * @param comparator
+     */
     public void trierMessages(Comparator<Message> comparator) {
         Collections.sort(messages, comparator);
     }

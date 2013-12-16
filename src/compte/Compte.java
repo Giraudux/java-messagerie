@@ -66,4 +66,12 @@ public abstract class Compte implements Comparable<Compte> {
      * @return
      */
     public abstract boolean contient(Compte compte);
+
+    /**
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        return adresse.hashCode();
+    }
 }
