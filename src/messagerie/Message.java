@@ -59,6 +59,13 @@ public class Message {
     /**
      * @return
      */
+    public Calendar getDate() {
+        return date;
+    }
+
+    /**
+     * @return
+     */
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("Sujet: ").append(sujet).append("\nDe: <").append(emetteur.getAdresse()).append(">\nDate: ").append(date.toString()).append("\nPour:");
