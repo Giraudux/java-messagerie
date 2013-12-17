@@ -53,9 +53,17 @@ public class Utilisateur extends Compte {
      */
     public String getName() {
         return name;
-    }
-
+    }   
+    
     /**
+     * Accesseur de l'attribut password
+	 * @return password, le mot de passe de l'utilisateur 
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
      * envoie un message à tous les utilisateurs spécifié dans le message
      * @param message, le message à envoyer
      */

@@ -29,6 +29,40 @@ public class Systeme {
         comptes.add(new SuperUtilisateur("root", adresseRoot, passwordRoot));
 
     }
+    
+    /**
+     * Méthode qui connecte un utilisateur au système
+     * @param adresse, l'adresse de connexion
+     * @param password, le mot de passe
+     * @return l'utilisateur si l'authentification s'est bien déroulé, sinon  retourne null
+     */
+    public Utilisateur connexion(String adresse, String password){
+    	Compte c = obtenirCompte(adresse);
+    	if(c!=null && c instanceof Utilisateur){
+    		Utilisateur u = (Utilisateur)c;
+    		if(password.equals(u.getPassword())){
+    			if(c instanceof SuperUtilisateur)
+    				return (SuperUtilisateur)u;
+    			else
+    				return u;
+    		}
+    	}
+    	return null;
+    }
+    
+    /**
+     * Méthode qui renvoie le compte associé à l'adresse
+     * @param adresse, l'adresse du compte recherché
+     * @return le compte correspondant à l'adresse, null si aucun compte trouvé
+     */
+    public Compte obtenirCompte(String adresse)
+    {
+            for(Compte c : comptes){
+                    if(c.getAdresse().equals(adresse))
+                            return c;
+            }
+            return null;
+    }
 
     /**
      * Ajoute un utilisateur dans le systeme
@@ -117,4 +151,5 @@ public class Systeme {
         }
         return false;
     }
+    
 }
