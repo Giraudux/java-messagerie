@@ -20,7 +20,7 @@ public abstract class Compte implements Comparable<Compte> {
     	if(adresse.matches(ADRESSE_CORRECTE))
     		this.adresse = adresse;
     	else
-    		throw new Exception("pattern de l'adresse incorrect");
+    		throw new Exception("pattern de l'adresse incorrect : "+adresse);
     }
 
     /**Accesseur de l'attribut adresse

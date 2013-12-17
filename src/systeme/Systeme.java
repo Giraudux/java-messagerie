@@ -93,9 +93,11 @@ public class Systeme {
         if (superUtilisateur instanceof SuperUtilisateur) {
             if (utilisateur instanceof SuperUtilisateur) {
                 if (superUtilisateur.getLogin().equals("root")) {
+                	supprimerAbonnement(utilisateur);
                     return comptes.remove(utilisateur);
                 }
             } else {
+            	supprimerAbonnement(utilisateur);
                 return comptes.remove(utilisateur);
             }
         }
@@ -119,13 +121,14 @@ public class Systeme {
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
         if (utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
+        	supprimerAbonnement(listeDiffusion);
             return comptes.remove(listeDiffusion);
         }
         return false;
     }
 
     /**
-     * Abonne un utilisateur à une liste de diffusion
+     * Abonne un compte à une liste de diffusion
      * @param listeDiffusion, la liste de diffusion auquel le compte s'abonne
      * @param compte, le compte qui s'y abonnne
      * @param utilisateur, l'utilisateur qui effectue l'opération
@@ -139,7 +142,7 @@ public class Systeme {
     }
 
     /**
-     * Désabonne un utilisateur à une liste de diffusion
+     * Désabonne un compte à une liste de diffusion
      * @param listeDiffusion, la liste de diffusion auquel le compte se désabonne
      * @param compte, le compte qui se désabonnne
      * @param utilisateur, l'utilisateur qui effectue l'opération
@@ -150,6 +153,36 @@ public class Systeme {
             return listeDiffusion.supprimerCompte(compte);
         }
         return false;
+    }
+    
+    
+    
+    /**
+     * Méthode qui récupère les listes de diffusion auquel est abonné un compte
+     * @param utilisateur
+     * @return l'ensemble de liste de diffusion
+     */
+    public Set<ListeDiffusion> voirAbonnements(Compte compte){
+    	LinkedHashSet<ListeDiffusion> listes = new LinkedHashSet<ListeDiffusion>();
+    	for(Compte c : comptes){
+    		if(c instanceof ListeDiffusion){
+    			ListeDiffusion liste = (ListeDiffusion)c;
+    			if(liste.contient(compte))
+    				listes.add(liste);
+    		}
+    	}
+    	return listes;
+    }
+    
+    /**
+     * Supprime tous les abonnements d'un compte
+     * @param compte,le compte auquel on souhaite supprimer les abonnements;
+     */
+    public void supprimerAbonnement(Compte compte){
+    	Set<ListeDiffusion> listes = voirAbonnements(compte);
+    	for(ListeDiffusion liste : listes){
+    		liste.supprimerCompte(compte);
+    	}
     }
     
 }

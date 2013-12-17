@@ -113,6 +113,7 @@ public class Utilisateur extends Compte {
         res.add(this);
         return res;
     }
+    
 
     /**
      * affiche le login et l'adresse de l'utilisateur

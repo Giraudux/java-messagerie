@@ -8,16 +8,27 @@ import systeme.*;
  * @version 1.0
  */
 public class Main {
-	
+	public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	public static void main(String[] args) {
-        Utilisateur u1,u2;
+		
+		String a = "francois@systeme.fr";
+		System.out.println(a.matches(ADRESSE_CORRECTE));
+		
 		try {
-			u1 = new Utilisateur("francois","francois.hallereau@systeme.fr","azerty");
-			System.out.println(u1.getLogin());
-			u2 = new Utilisateur("bob","jksdffffbhffh","azet");
-			
+////			Systeme webmail = new Systeme("root@systeme.fr","toor");
+//            
+//			Utilisateur user1 = new Utilisateur("François","francois@systeme.fr","azerty");
+////            Utilisateur user2 = new Utilisateur("Alexis","alexis.test@systeme.fr","azerty");
+////            Utilisateur user3 = new Utilisateur("Eric","eric.test@systeme.fr","azerty");
+////            Utilisateur user4 = new Utilisateur("Pierre","pierre.test@systeme.fr","azerty");
+////            Utilisateur user5 = new Utilisateur("Seb","seb.test@systeme.fr","azerty");
+//            
+////            if(webmail.connexion("root@systeme.fr", "toor") instanceof SuperUtilisateur)
+////            	System.out.println("root est connecté");
+            
+            
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e.getLocalizedMessage());
 		}
         
     }
