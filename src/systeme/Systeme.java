@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class Systeme {
 
-    public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    public static final String ADRESSE_CORRECTE = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$";
     private Set<Compte> comptes;
 
 
