@@ -41,9 +41,7 @@ public class ListeDiffusion extends Compte {
     public Set<Utilisateur> getUtilisateurs() {
         Set<Utilisateur> utilisateurs = new LinkedHashSet<Utilisateur>();
         for (Compte compte : comptes) {
-            if (!(compte instanceof ListeDiffusion)) {
-                utilisateurs.addAll(compte.getUtilisateurs());
-            }
+            utilisateurs.addAll(compte.getUtilisateurs());
         }
         return utilisateurs;
     }
