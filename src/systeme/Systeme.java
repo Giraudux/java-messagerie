@@ -16,19 +16,21 @@ public class Systeme {
 
     public static final String ADRESSE_CORRECTE = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$";
     private Set<Compte> comptes;
+    private String domaine;
 
 
     /**
      * Constructeur de la classe Systeme.
      *
-     * @param adresseRoot  l'adresse du root
+     * @param domaine  le nom de domaine du système de messagerie
      * @param passwordRoot le mot de passe du root
      * @throws Exception, exception levée si l'adresse ne correspond pas au pattern spécifié
      */
 
-    public Systeme(String adresseRoot, String passwordRoot) throws Exception {
+    public Systeme(String domaine, String passwordRoot) throws Exception {
         comptes = new LinkedHashSet<Compte>();
-        comptes.add(new SuperUtilisateur("root", adresseRoot, passwordRoot));
+        this.domaine = domaine;
+        comptes.add(new SuperUtilisateur("root", "root@"+domaine, passwordRoot));
 
     }
 
