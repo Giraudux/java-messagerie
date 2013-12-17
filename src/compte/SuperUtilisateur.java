@@ -1,7 +1,7 @@
 package compte;
 
 /**
- * Classe compte.SuperUtilisateur
+ * Un SuperUtilisateur est un Utilisateur disposant de privilèges particulires.
  *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
@@ -9,18 +9,20 @@ package compte;
 public class SuperUtilisateur extends Utilisateur {
 
     /**
-     * Constructeur de la classe SuperUtilisateur
-     * @param name, le nom du super utilisateur
-     * @param adresse, l'adresse mail du super utilisateur
-     * @param password, le mot de passe du super utilisateur
-     * @throws Exception, Exception levée en cas d'adresse incorrecte 
+     * Constructeur de la classe SuperUtilisateur.
+     *
+     * @param name     le nom du super utilisateur
+     * @param adresse  l'adresse mail du super utilisateur
+     * @param password le mot de passe du super utilisateur
+     * @throws Exception, Exception levée en cas d'adresse incorrecte
      */
     public SuperUtilisateur(String name, String adresse, String password) throws Exception {
-        super(name, adresse, password);        
+        super(name, adresse, password);
     }
 
     /**
-     * redéfinition du toString
+     * Redéfinition du toString.
+     *
      * @return "#"+le toString de la classe Utilisateur
      */
     @Override
