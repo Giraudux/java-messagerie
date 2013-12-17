@@ -45,7 +45,7 @@ public class BoiteMessage {
         if (!messages.isEmpty()) {
             int i = 0;
             for (Message m : messages) {
-                liste += i + "| De: " + m.getEmetteur().getAdresse() + " | Date: " + m.getDate().toString() + " | Sujet: " + m.getSujet() + "\n";
+                liste += i + "| De: " + m.getEmetteur().getAdresse() + " | Date: " + m.getDate() + " | Sujet: " + m.getSujet() + "\n";
                 i++;
             }
             liste += "Fin des messages.\n";

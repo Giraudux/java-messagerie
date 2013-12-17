@@ -2,6 +2,7 @@ package messagerie;
 
 import compte.Compte;
 import compte.Utilisateur;
+import sun.util.resources.CalendarData_cs;
 
 import java.util.Calendar;
 import java.util.Collection;
@@ -69,8 +70,8 @@ public class Message {
      *
      * @return la date de création du message
      */
-    public Calendar getDate() {
-        return date;
+    public String getDate() {
+        return date.get(Calendar.HOUR)+":"+date.get(Calendar.MINUTE)+" "+date.get(Calendar.DAY_OF_MONTH)+"/"+date.get(Calendar.MONTH)+"/"+date.get(Calendar.YEAR);
     }
 
     /**
@@ -80,7 +81,7 @@ public class Message {
      */
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append("Sujet: ").append(sujet).append("\nDe: <").append(emetteur.getAdresse()).append(">\nDate: ").append(date.toString()).append("\nPour:");
+        res.append("Sujet: ").append(sujet).append("\nDe: <").append(emetteur.getAdresse()).append(">\nDate: ").append(getDate()).append("\nPour:");
         for (Compte compte : destinataires) {
             res.append(" ").append(compte.getAdresse());
         }
