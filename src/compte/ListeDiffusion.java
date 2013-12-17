@@ -15,17 +15,20 @@ public class ListeDiffusion extends Compte {
     private Utilisateur createur;
 
     /**
-     * @param adresse
-     * @param restreint
+     * Constructeur de la classe ListeDiffusion
+     * @param adresse, l'adresse de la liste de diffusion
+     * @param restreint, statut de la liste : true si privé, false sinon
+     * @throws Exception 
      */
-    public ListeDiffusion(String adresse, boolean restreint) {
+    public ListeDiffusion(String adresse, boolean restreint) throws Exception {
         super(adresse);
         this.comptes = new LinkedHashSet<Compte>();
         this.restreint = restreint;
     }
 
     /**
-     * @return
+     * Méthode qui retourne l'ensemble des utilisateurs contenu dans une liste de diffusion
+     * @return l'ensemble des utilisateurs
      */
     @Override
     public Set<Utilisateur> getUtilisateurs() {
@@ -39,7 +42,8 @@ public class ListeDiffusion extends Compte {
     }
 
     /**
-     * @return
+     * Affiche tous les utilisateurs abonné à la liste
+     * @return une chaine de caractère
      */
     @Override
     public String toString() {
@@ -47,8 +51,9 @@ public class ListeDiffusion extends Compte {
     }
 
     /**
-     * @param compte
-     * @return
+     * ajoute un compte à la liste de diffusion
+     * @param compte, le compte à ajouter
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon 
      */
     public boolean ajouterCompte(Compte compte) {
         if (compte instanceof ListeDiffusion) {
@@ -63,16 +68,18 @@ public class ListeDiffusion extends Compte {
     }
 
     /**
-     * @param compte
-     * @return
+     * supprime un compte à la liste de diffusion
+     * @param compte, le compte à supprimer
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon 
      */
     public boolean supprimerCompte(Compte compte) {
         return comptes.remove(compte);
     }
 
     /**
-     * @param compte
-     * @return
+     * teste si la liste contient un compte
+     * @param compte, le compte à tester
+     * @return un booléen, true si il est inclus, false sinon
      */
     @Override
     public boolean contient(Compte compte) {
@@ -89,15 +96,17 @@ public class ListeDiffusion extends Compte {
     }
 
     /**
-     * @param utilisateur
-     * @return
+     * teste si l'utilisateur à créer la liste
+     * @param utilisateur, l'utilisateur à tester
+     * @return un booléen, true si il est le créateur, false sinon
      */
     public boolean isCreateur(Utilisateur utilisateur) {
         return utilisateur.equals(createur);
     }
 
     /**
-     * @return
+     * teste si la liste de diffusion est privé
+     * @return un booléen, true si l'accès est privé, false sinon
      */
     public boolean isRestreint() {
         return restreint;

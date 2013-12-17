@@ -17,35 +17,47 @@ public class Utilisateur extends Compte {
     protected BoiteMessage boiteReception;
 
     /**
-     * @param name
-     * @param login
-     * @param adresse
-     * @param password
+     * Constructeur de la classe Utilisateur
+     * @param name, le nom de l'utilisateur
+     * @param adresse, l'adresse mail de l'utilisateur
+     * @param password, le mot de passe de l'utilisateur
+     * @throws Exception, Exception levée en cas d'adresse incorrecte 
      */
-    public Utilisateur(String name, String login, String adresse, String password) {
+    public Utilisateur(String name, String adresse, String password) throws Exception {
         super(adresse);
         this.name = name;
-        this.login = login;
+        setLogin();
         this.password = password;
         this.boiteReception = new BoiteMessage();
     }
 
     /**
-     * @return
+     * Accesseur de l'attribut login
+     * @return login, le login de l'utilisateur
      */
     public String getLogin() {
         return login;
     }
+    
+    /**
+     * Modificateur du login
+     * Le login est défini à partir de l'adresse mail
+     */
+    public void setLogin() {
+    	login = adresse.substring(0,adresse.lastIndexOf("@"));
+    }
 
     /**
-     * @return
+     * Accesseur de l'attribut name
+     * @return name, le nom de l'utilisateur
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param message
+     * envoie un message à tous les utilisateurs spécifié dans le message
+     * @param message, le message à envoyer
      */
     public static void envoyerMessage(Message message) {
         Set<Utilisateur> destinataires = new LinkedHashSet<Utilisateur>();
@@ -68,21 +80,24 @@ public class Utilisateur extends Compte {
     }
 
     /**
-     * @param message
+     * Méthode qui réceptionne un message et l'ajoute à la boite de réception
+     * @param message, le message reçu
      */
     public void recevoirMessage(Message message) {
         boiteReception.addMessage(message);
     }
 
     /**
-     * @return
+     * Méthode qui liste les intitulés des messages présent dans la boite de réception
+     * @return une chaine de caractère contenant les intitulés
      */
     public String listerMessages() {
         return "Bonjour " + login + ",\n" + this.boiteReception.listerMessages();
     }
 
     /**
-     * @return
+     * Méthode utilisé dans la récursion des listes de diffusion
+     * @return l'utilisateur
      */
     @Override
     public Set<Utilisateur> getUtilisateurs() {
@@ -92,7 +107,8 @@ public class Utilisateur extends Compte {
     }
 
     /**
-     * @return
+     * affiche le login et l'adresse de l'utilisateur
+     * @return une chaine de caractère
      */
     @Override
     public String toString() {
@@ -100,8 +116,9 @@ public class Utilisateur extends Compte {
     }
 
     /**
+     * teste si le compte passé en paramètre est égal
      * @param compte
-     * @return
+     * @return un booléen, true si c'est le compte, false sinon
      */
     @Override
     public boolean contient(Compte compte) {
@@ -109,8 +126,9 @@ public class Utilisateur extends Compte {
     }
 
     /**
+     * redéfinition du equals
      * @param o
-     * @return
+     * @return un booléen, true si c'est égal, false sinon
      */
     @Override
     public boolean equals(Object o) {
@@ -125,11 +143,5 @@ public class Utilisateur extends Compte {
         return true;
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        return Integer.parseInt(Integer.toString(adresse.hashCode()+login.hashCode()));
-    }
+
 }

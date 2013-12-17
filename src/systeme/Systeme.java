@@ -12,24 +12,26 @@ import java.util.Set;
  * @version 1.0
  */
 public class Systeme {
-    public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
     private Set<Utilisateur> utilisateurs;
     private Set<ListeDiffusion> listesDiffusion;
 
     /**
-     * @param adresseRoot
-     * @param passwordRoot
+     * Constructeur de la classe Systeme
+     * @param adresseRoot, l'adresse du root 
+     * @param passwordRoot, le mot de passe du root
+     * @throws Exception, exception levée si l'adresse ne correspond pas au pattern spécifié 
      */
-    public Systeme(String adresseRoot, String passwordRoot) {
+    public Systeme(String adresseRoot, String passwordRoot) throws Exception  {
         utilisateurs = new LinkedHashSet<Utilisateur>();
         listesDiffusion = new LinkedHashSet<ListeDiffusion>();
-        utilisateurs.add(new SuperUtilisateur("root", "root", adresseRoot, passwordRoot));
+        utilisateurs.add(new SuperUtilisateur("root",adresseRoot, passwordRoot));
     }
 
     /**
-     * @param utilisateur
-     * @param superUtilisateur
-     * @return
+     * Ajoute un utilisateur dans le systeme
+     * @param utilisateur, l'utilisateur à enregistrer
+     * @param superUtilisateur, l'administrateur qui effectue l'action
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean ajouterUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
         if (superUtilisateur instanceof SuperUtilisateur) {
@@ -45,9 +47,10 @@ public class Systeme {
     }
 
     /**
-     * @param utilisateur
-     * @param superUtilisateur
-     * @return
+     * Supprime un utilisateur dans le systeme
+     * @param utilisateur, l'utilisateur à supprimer
+     * @param superUtilisateur, l'administrateur qui effectue l'action
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean supprimerUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
         if (superUtilisateur instanceof SuperUtilisateur) {
@@ -63,17 +66,19 @@ public class Systeme {
     }
 
     /**
-     * @param listeDiffusion
-     * @return
+     * Ajoute une liste de diffusion dans le systeme
+     * @param listeDiffusion, la liste de diffusion à enregistrer
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion) {
         return listesDiffusion.add(listeDiffusion);
     }
 
     /**
-     * @param listeDiffusion
-     * @param utilisateur
-     * @return
+     * Supprime une liste de diffusion dans le systeme
+     * @param listeDiffusion, la liste de diffusion à supprimer
+     *  @param utilisateur, l'utilisateur qui effectue l'action
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
         if (utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
@@ -83,10 +88,11 @@ public class Systeme {
     }
 
     /**
-     * @param listeDiffusion
-     * @param compte
-     * @param utilisateur
-     * @return
+     * Abonne un utilisateur à une liste de diffusion
+     * @param listeDiffusion, la liste de diffusion auquel le compte s'abonne
+     * @param compte, le compte qui s'y abonnne
+     * @param utilisateur, l'utilisateur qui effectue l'opération
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean abonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
         if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
@@ -96,10 +102,11 @@ public class Systeme {
     }
 
     /**
-     * @param listeDiffusion
-     * @param compte
-     * @param utilisateur
-     * @return
+     * Désabonne un utilisateur à une liste de diffusion
+     * @param listeDiffusion, la liste de diffusion auquel le compte se désabonne
+     * @param compte, le compte qui se désabonnne
+     * @param utilisateur, l'utilisateur qui effectue l'opération
+     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean desabonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
         if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {

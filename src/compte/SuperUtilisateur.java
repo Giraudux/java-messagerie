@@ -9,17 +9,19 @@ package compte;
 public class SuperUtilisateur extends Utilisateur {
 
     /**
-     * @param name
-     * @param login
-     * @param adresse
-     * @param password
+     * Constructeur de la classe SuperUtilisateur
+     * @param name, le nom du super utilisateur
+     * @param adresse, l'adresse mail du super utilisateur
+     * @param password, le mot de passe du super utilisateur
+     * @throws Exception, Exception levée en cas d'adresse incorrecte 
      */
-    public SuperUtilisateur(String name, String login, String adresse, String password) {
-        super(name, login, adresse, password);
+    public SuperUtilisateur(String name, String adresse, String password) throws Exception {
+        super(name, adresse, password);        
     }
 
     /**
-     * @return
+     * redéfinition du toString
+     * @return "#"+le toString de la classe Utilisateur
      */
     @Override
     public String toString() {
