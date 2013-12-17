@@ -8,11 +8,10 @@ import systeme.*;
  * @version 1.0
  */
 public class Main {
-	public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	public static void main(String[] args) {
 		
 		String a = "francois@systeme.fr";
-		System.out.println(a.matches(ADRESSE_CORRECTE));
+		System.out.println(a.matches(Systeme.ADRESSE_CORRECTE));
 		
 		try {
 ////			Systeme webmail = new Systeme("root@systeme.fr","toor");

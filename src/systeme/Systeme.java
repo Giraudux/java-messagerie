@@ -6,7 +6,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Classe systeme.Systeme
+ * La classe Systeme permet de gérer un systeme de messagerie comportant des comptes (utilisateurs et liste de diffusion).
+ * Cette classe permet de gérer les interactions entre les utilisateurs (envoie de messages, inscription à une liste de diffusion...).
  *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
@@ -18,10 +19,10 @@ public class Systeme {
 
 
     /**
-     * Constructeur de la classe Systeme
-     * @param adresseRoot, l'adresse du root 
-     * @param passwordRoot, le mot de passe du root
-     * @throws Exception, exception levée si l'adresse ne correspond pas au pattern spécifié 
+     * Constructeur de la classe Systeme.
+     * @param adresseRoot l'adresse du root
+     * @param passwordRoot le mot de passe du root
+     * @throws Exception, exception levée si l'adresse ne correspond pas au pattern spécifié
      */
 
     public Systeme(String adresseRoot, String passwordRoot) throws Exception {
@@ -31,10 +32,10 @@ public class Systeme {
     }
     
     /**
-     * Méthode qui connecte un utilisateur au système
-     * @param adresse, l'adresse de connexion
-     * @param password, le mot de passe
-     * @return l'utilisateur si l'authentification s'est bien déroulé, sinon  retourne null
+     * Méthode qui connecte un utilisateur au système.
+     * @param adresse l'adresse de connexion
+     * @param password le mot de passe
+     * @return l'utilisateur si l'authentification s'est bien déroulée, sinon  retourne null
      */
     public Utilisateur connexion(String adresse, String password){
     	Compte c = obtenirCompte(adresse);
@@ -51,8 +52,8 @@ public class Systeme {
     }
     
     /**
-     * Méthode qui renvoie le compte associé à l'adresse
-     * @param adresse, l'adresse du compte recherché
+     * Méthode qui renvoie le compte associé à l'adresse.
+     * @param adresse l'adresse du compte recherché
      * @return le compte correspondant à l'adresse, null si aucun compte trouvé
      */
     public Compte obtenirCompte(String adresse)
@@ -66,9 +67,9 @@ public class Systeme {
 
     /**
      * Ajoute un utilisateur dans le systeme
-     * @param utilisateur, l'utilisateur à enregistrer
-     * @param superUtilisateur, l'administrateur qui effectue l'action
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * @param utilisateur l'utilisateur à enregistrer
+     * @param superUtilisateur l'administrateur qui effectue l'action
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean ajouterUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
         if (superUtilisateur instanceof SuperUtilisateur && !comptes.contains(utilisateur)) {
@@ -84,10 +85,10 @@ public class Systeme {
     }
 
     /**
-     * Supprime un utilisateur dans le systeme
-     * @param utilisateur, l'utilisateur à supprimer
-     * @param superUtilisateur, l'administrateur qui effectue l'action
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * Supprime un utilisateur du systeme.
+     * @param utilisateur l'utilisateur à supprimer
+     * @param superUtilisateur l'administrateur qui effectu l'action
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean supprimerUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
         if (superUtilisateur instanceof SuperUtilisateur) {
@@ -105,19 +106,19 @@ public class Systeme {
     }
 
     /**
-     * Ajoute une liste de diffusion dans le systeme
-     * @param listeDiffusion, la liste de diffusion à enregistrer
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * Ajoute une liste de diffusion au systeme.
+     * @param listeDiffusion la liste de diffusion à enregistrer
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion) {
         return comptes.add(listeDiffusion);
     }
  
     /**
-     * Supprime une liste de diffusion dans le systeme
-     * @param listeDiffusion, la liste de diffusion à supprimer
-     *  @param utilisateur, l'utilisateur qui effectue l'action
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * Supprime une liste de diffusion du systeme.
+     * @param listeDiffusion la liste de diffusion à supprimer
+     *  @param utilisateur l'utilisateur qui effectue l'action
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
         if (utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
@@ -128,11 +129,11 @@ public class Systeme {
     }
 
     /**
-     * Abonne un compte à une liste de diffusion
-     * @param listeDiffusion, la liste de diffusion auquel le compte s'abonne
-     * @param compte, le compte qui s'y abonnne
-     * @param utilisateur, l'utilisateur qui effectue l'opération
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * Abonne un compte à une liste de diffusion.
+     * @param listeDiffusion la liste de diffusion à laquelle le compte s'abonne
+     * @param compte le compte qui s'y abonnne
+     * @param utilisateur l'utilisateur qui effectu l'opération
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean abonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
         if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
@@ -142,11 +143,11 @@ public class Systeme {
     }
 
     /**
-     * Désabonne un compte à une liste de diffusion
-     * @param listeDiffusion, la liste de diffusion auquel le compte se désabonne
-     * @param compte, le compte qui se désabonnne
-     * @param utilisateur, l'utilisateur qui effectue l'opération
-     * @return un booléen, true si l'opération c'est bien déroulé, false sinon
+     * Désabonne un compte à une liste de diffusion.
+     * @param listeDiffusion la liste de diffusion à laquelle le compte se désabonne
+     * @param compte le compte qui se désabonnne
+     * @param utilisateur l'utilisateur qui effectue l'opération
+     * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean desabonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
         if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
@@ -158,9 +159,9 @@ public class Systeme {
     
     
     /**
-     * Méthode qui récupère les listes de diffusion auquel est abonné un compte
-     * @param utilisateur
-     * @return l'ensemble de liste de diffusion
+     * Méthode qui récupère les listes de diffusion auxquelles est abonné un compte.
+     * @param compte le compte dont on veut connaître les abonnements
+     * @return l'ensemble des listes de diffusion
      */
     public Set<ListeDiffusion> voirAbonnements(Compte compte){
     	LinkedHashSet<ListeDiffusion> listes = new LinkedHashSet<ListeDiffusion>();
@@ -175,8 +176,8 @@ public class Systeme {
     }
     
     /**
-     * Supprime tous les abonnements d'un compte
-     * @param compte,le compte auquel on souhaite supprimer les abonnements;
+     * Supprime tous les abonnements d'un compte.
+     * @param compte le compte auquel on souhaite supprimer les abonnements
      */
     public void supprimerAbonnement(Compte compte){
     	Set<ListeDiffusion> listes = voirAbonnements(compte);
