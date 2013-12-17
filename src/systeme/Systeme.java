@@ -13,17 +13,15 @@ import java.util.Set;
  */
 public class Systeme {
     public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-    private Set<Utilisateur> utilisateurs;
-    private Set<ListeDiffusion> listesDiffusion;
+    private Set<Compte> comptes;
 
     /**
      * @param adresseRoot
      * @param passwordRoot
      */
     public Systeme(String adresseRoot, String passwordRoot) {
-        utilisateurs = new LinkedHashSet<Utilisateur>();
-        listesDiffusion = new LinkedHashSet<ListeDiffusion>();
-        utilisateurs.add(new SuperUtilisateur("root", "root", adresseRoot, passwordRoot));
+        comptes = new LinkedHashSet<Compte>();
+        comptes.add(new SuperUtilisateur("root", "root", adresseRoot, passwordRoot));
     }
 
     /**
@@ -32,13 +30,13 @@ public class Systeme {
      * @return
      */
     public boolean ajouterUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
-        if (superUtilisateur instanceof SuperUtilisateur) {
+        if (superUtilisateur instanceof SuperUtilisateur && !comptes.contains(utilisateur)) {
             if (utilisateur instanceof SuperUtilisateur) {
                 if (superUtilisateur.getLogin().equals("root")) {
-                    return utilisateurs.add(utilisateur);
+                    return comptes.add(utilisateur);
                 }
             } else {
-                return utilisateurs.add(utilisateur);
+                return comptes.add(utilisateur);
             }
         }
         return false;
@@ -53,10 +51,10 @@ public class Systeme {
         if (superUtilisateur instanceof SuperUtilisateur) {
             if (utilisateur instanceof SuperUtilisateur) {
                 if (superUtilisateur.getLogin().equals("root")) {
-                    return utilisateurs.remove(utilisateur);
+                    return comptes.remove(utilisateur);
                 }
             } else {
-                return utilisateurs.remove(utilisateur);
+                return comptes.remove(utilisateur);
             }
         }
         return false;
@@ -67,7 +65,7 @@ public class Systeme {
      * @return
      */
     public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion) {
-        return listesDiffusion.add(listeDiffusion);
+        return comptes.add(listeDiffusion);
     }
 
     /**
@@ -77,7 +75,7 @@ public class Systeme {
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
         if (utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
-            return listesDiffusion.remove(listeDiffusion);
+            return comptes.remove(listeDiffusion);
         }
         return false;
     }
