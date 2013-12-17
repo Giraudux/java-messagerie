@@ -7,7 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Classe compte.Utilisateur
+ * Un Utilisateur est un compte disposant d'un nom, d'un login et d'un mot de passe.
+ * L'utilisateur peut envoyer et recevoir des messages qui seront stoqués dans sa boîte de reception.
  *
  * @author Alexis Giraudet, François Hallereau
  * @version 1.0
@@ -17,11 +18,12 @@ public class Utilisateur extends Compte {
     protected BoiteMessage boiteReception;
 
     /**
-     * Constructeur de la classe Utilisateur
-     * @param name, le nom de l'utilisateur
-     * @param adresse, l'adresse mail de l'utilisateur
-     * @param password, le mot de passe de l'utilisateur
-     * @throws Exception, Exception levée en cas d'adresse incorrecte 
+     * Constructeur de la classe Utilisateur.
+     *
+     * @param name     le nom de l'utilisateur
+     * @param adresse  l'adresse mail de l'utilisateur
+     * @param password le mot de passe de l'utilisateur
+     * @throws Exception, Exception levée en cas d'adresse incorrecte
      */
     public Utilisateur(String name, String adresse, String password) throws Exception {
         super(adresse);
@@ -32,40 +34,44 @@ public class Utilisateur extends Compte {
     }
 
     /**
-     * Accesseur de l'attribut login
+     * Accesseur de l'attribut login.
+     *
      * @return login, le login de l'utilisateur
      */
     public String getLogin() {
         return login;
     }
-    
+
     /**
-     * Modificateur du login
-     * Le login est défini à partir de l'adresse mail
+     * Modificateur du login.
+     * Le login est défini à partir de l'adresse mail (login@...).
      */
     public void setLogin() {
-    	login = adresse.substring(0,adresse.lastIndexOf("@"));
+        login = adresse.substring(0, adresse.lastIndexOf("@"));
     }
 
     /**
-     * Accesseur de l'attribut name
+     * Accesseur de l'attribut name.
+     *
      * @return name, le nom de l'utilisateur
      */
     public String getName() {
         return name;
-    }   
-    
-    /**
-     * Accesseur de l'attribut password
-	 * @return password, le mot de passe de l'utilisateur 
-	 */
-	public String getPassword() {
-		return password;
-	}
+    }
 
-	/**
-     * envoie un message à tous les utilisateurs spécifié dans le message
-     * @param message, le message à envoyer
+    /**
+     * Accesseur de l'attribut password.
+     *
+     * @return password, le mot de passe de l'utilisateur
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Envoie un message à tous les utilisateurs spécifiés dans le message.
+     *
+     * @param message le message à envoyer
      */
     public static void envoyerMessage(Message message) {
         Set<Utilisateur> destinataires = new LinkedHashSet<Utilisateur>();
@@ -88,23 +94,26 @@ public class Utilisateur extends Compte {
     }
 
     /**
-     * Méthode qui réceptionne un message et l'ajoute à la boite de réception
-     * @param message, le message reçu
+     * Méthode qui réceptionne un message et l'ajoute à la boîte de réception.
+     *
+     * @param message le message reçu
      */
     public void recevoirMessage(Message message) {
         boiteReception.ajouterMessage(message);
     }
 
     /**
-     * Méthode qui liste les intitulés des messages présent dans la boite de réception
-     * @return une chaine de caractère contenant les intitulés
+     * Méthode qui liste les intitulés des messages présents dans la boîte de réception.
+     *
+     * @return une chaîne de caractères contenant les intitulés
      */
     public String listerMessages() {
         return "Bonjour " + login + ",\n" + this.boiteReception.listerMessages();
     }
 
     /**
-     * Méthode utilisé dans la récursion des listes de diffusion
+     * Méthode utilisée dans la récursion des listes de diffusion.
+     *
      * @return l'utilisateur
      */
     @Override
@@ -113,11 +122,12 @@ public class Utilisateur extends Compte {
         res.add(this);
         return res;
     }
-    
+
 
     /**
-     * affiche le login et l'adresse de l'utilisateur
-     * @return une chaine de caractère
+     * Affiche le login et l'adresse de l'utilisateur.
+     *
+     * @return une chaine de caractères
      */
     @Override
     public String toString() {
@@ -125,9 +135,10 @@ public class Utilisateur extends Compte {
     }
 
     /**
-     * teste si le compte passé en paramètre est égal
-     * @param compte
-     * @return un booléen, true si c'est le compte, false sinon
+     * Teste si le compte passé en paramètre est égal au compte.
+     *
+     * @param compte le compte à tester
+     * @return un booléen, true si les comptes sont égaux, false sinon
      */
     @Override
     public boolean contient(Compte compte) {
