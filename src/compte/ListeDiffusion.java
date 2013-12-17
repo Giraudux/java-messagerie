@@ -21,8 +21,8 @@ public class ListeDiffusion extends Compte {
     /**
      * Constructeur de la classe ListeDiffusion.
      *
-     * @param adresse,   l'adresse de la liste de diffusion
-     * @param restreint, statut de la liste : true si l'accès est restreint, sinon false
+     * @param adresse   l'adresse de la liste de diffusion
+     * @param restreint statut de la liste : true si l'accès est restreint, sinon false
      * @throws Exception lève une exception lorsque l'adresse est incorrecte
      */
     public ListeDiffusion(String adresse, boolean restreint, Utilisateur createur) throws Exception {
@@ -61,7 +61,7 @@ public class ListeDiffusion extends Compte {
     /**
      * Ajoute un compte à la liste de diffusion.
      *
-     * @param compte, le compte à ajouter
+     * @param compte le compte à ajouter
      * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean ajouterCompte(Compte compte) {
@@ -79,7 +79,7 @@ public class ListeDiffusion extends Compte {
     /**
      * Supprime un compte de la liste de diffusion.
      *
-     * @param compte, le compte à supprimer
+     * @param compte le compte à supprimer
      * @return un booléen, true si l'opération c'est bien déroulée, false sinon
      */
     public boolean supprimerCompte(Compte compte) {
@@ -89,7 +89,7 @@ public class ListeDiffusion extends Compte {
     /**
      * Teste si la liste contient un compte.
      *
-     * @param compte, le compte recherché
+     * @param compte le compte recherché
      * @return un booléen, true si le compte a été trouvé, false sinon
      */
     @Override
@@ -109,7 +109,7 @@ public class ListeDiffusion extends Compte {
     /**
      * Teste si l'utilisateur est le créateur de la liste.
      *
-     * @param utilisateur, l'utilisateur à tester
+     * @param utilisateur l'utilisateur à tester
      * @return un booléen, true si il est le créateur, false sinon
      */
     public boolean estCreateur(Utilisateur utilisateur) {
