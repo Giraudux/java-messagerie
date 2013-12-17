@@ -31,7 +31,7 @@ public class BoiteMessage {
      *
      * @param message le message à ajouter
      */
-    public void addMessage(Message message) {
+    public void ajouterMessage(Message message) {
         messages.add(message);
     }
 

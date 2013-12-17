@@ -100,7 +100,7 @@ public class ListeDiffusion extends Compte {
      * @param utilisateur, l'utilisateur à tester
      * @return un booléen, true si il est le créateur, false sinon
      */
-    public boolean isCreateur(Utilisateur utilisateur) {
+    public boolean estCreateur(Utilisateur utilisateur) {
         return utilisateur.equals(createur);
     }
 
@@ -108,7 +108,7 @@ public class ListeDiffusion extends Compte {
      * teste si la liste de diffusion est privé
      * @return un booléen, true si l'accès est privé, false sinon
      */
-    public boolean isRestreint() {
+    public boolean estRestreint() {
         return restreint;
     }
 }

@@ -118,7 +118,7 @@ public class Systeme {
      * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
-        if (utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
+        if (utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
             return comptes.remove(listeDiffusion);
         }
         return false;
@@ -132,7 +132,7 @@ public class Systeme {
      * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean abonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
-        if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
+        if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
             return listeDiffusion.ajouterCompte(compte);
         }
         return false;
@@ -146,7 +146,7 @@ public class Systeme {
      * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean desabonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
-        if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
+        if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
             return listeDiffusion.supprimerCompte(compte);
         }
         return false;

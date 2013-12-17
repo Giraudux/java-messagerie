@@ -74,7 +74,7 @@ public class Utilisateur extends Compte {
                 destinataires.add((Utilisateur) compte);
             } else if (compte instanceof ListeDiffusion) {
                 Set<Utilisateur> tmp = new LinkedHashSet<Utilisateur>();
-                if ((!((ListeDiffusion) compte).isRestreint()) || (message.getEmetteur() instanceof SuperUtilisateur) || (compte.contient(message.getEmetteur()))) {
+                if ((!((ListeDiffusion) compte).estRestreint()) || (message.getEmetteur() instanceof SuperUtilisateur) || (compte.contient(message.getEmetteur()))) {
                     destinataires.addAll(compte.getUtilisateurs());
                 }
                 tmp.remove(message.getEmetteur());
@@ -92,7 +92,7 @@ public class Utilisateur extends Compte {
      * @param message, le message reçu
      */
     public void recevoirMessage(Message message) {
-        boiteReception.addMessage(message);
+        boiteReception.ajouterMessage(message);
     }
 
     /**
