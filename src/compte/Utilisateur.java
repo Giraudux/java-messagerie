@@ -107,21 +107,4 @@ public class Utilisateur extends Compte {
     public boolean contient(Compte compte) {
         return equals(compte);
     }
-
-    /**
-     * @param o
-     * @return
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Utilisateur)) return false;
-        if (!super.equals(o)) return false;
-
-        Utilisateur that = (Utilisateur) o;
-
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-
-        return true;
-    }
 }
