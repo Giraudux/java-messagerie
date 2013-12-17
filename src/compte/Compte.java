@@ -50,7 +50,7 @@ public abstract class Compte implements Comparable<Compte> {
     /**
      * Redéfinition du equals.
      *
-     * @param o, un objet à comparer
+     * @param o un objet à comparer
      * @return un booléen true si le compte est égal à l'Object o, false sinon
      */
     @Override
