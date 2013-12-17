@@ -12,8 +12,10 @@ import java.util.Set;
  * @version 1.0
  */
 public class Systeme {
-    private Set<Utilisateur> utilisateurs;
-    private Set<ListeDiffusion> listesDiffusion;
+
+    public static final String ADRESSE_CORRECTE = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    private Set<Compte> comptes;
+
 
     /**
      * Constructeur de la classe Systeme
@@ -21,10 +23,11 @@ public class Systeme {
      * @param passwordRoot, le mot de passe du root
      * @throws Exception, exception levée si l'adresse ne correspond pas au pattern spécifié 
      */
-    public Systeme(String adresseRoot, String passwordRoot) throws Exception  {
-        utilisateurs = new LinkedHashSet<Utilisateur>();
-        listesDiffusion = new LinkedHashSet<ListeDiffusion>();
-        utilisateurs.add(new SuperUtilisateur("root",adresseRoot, passwordRoot));
+
+    public Systeme(String adresseRoot, String passwordRoot) throws Exception {
+        comptes = new LinkedHashSet<Compte>();
+        comptes.add(new SuperUtilisateur("root", adresseRoot, passwordRoot));
+
     }
 
     /**
@@ -34,13 +37,13 @@ public class Systeme {
      * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean ajouterUtilisateur(Utilisateur utilisateur, Utilisateur superUtilisateur) {
-        if (superUtilisateur instanceof SuperUtilisateur) {
+        if (superUtilisateur instanceof SuperUtilisateur && !comptes.contains(utilisateur)) {
             if (utilisateur instanceof SuperUtilisateur) {
                 if (superUtilisateur.getLogin().equals("root")) {
-                    return utilisateurs.add(utilisateur);
+                    return comptes.add(utilisateur);
                 }
             } else {
-                return utilisateurs.add(utilisateur);
+                return comptes.add(utilisateur);
             }
         }
         return false;
@@ -56,10 +59,10 @@ public class Systeme {
         if (superUtilisateur instanceof SuperUtilisateur) {
             if (utilisateur instanceof SuperUtilisateur) {
                 if (superUtilisateur.getLogin().equals("root")) {
-                    return utilisateurs.remove(utilisateur);
+                    return comptes.remove(utilisateur);
                 }
             } else {
-                return utilisateurs.remove(utilisateur);
+                return comptes.remove(utilisateur);
             }
         }
         return false;
@@ -71,9 +74,9 @@ public class Systeme {
      * @return un booléen, true si l'opération c'est bien déroulé, false sinon
      */
     public boolean ajouterListeDiffusion(ListeDiffusion listeDiffusion) {
-        return listesDiffusion.add(listeDiffusion);
+        return comptes.add(listeDiffusion);
     }
-
+ 
     /**
      * Supprime une liste de diffusion dans le systeme
      * @param listeDiffusion, la liste de diffusion à supprimer
@@ -82,7 +85,7 @@ public class Systeme {
      */
     public boolean supprimerListeDiffusion(ListeDiffusion listeDiffusion, Utilisateur utilisateur) {
         if (utilisateur instanceof SuperUtilisateur || listeDiffusion.isCreateur(utilisateur)) {
-            return listesDiffusion.remove(listeDiffusion);
+            return comptes.remove(listeDiffusion);
         }
         return false;
     }

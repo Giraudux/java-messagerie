@@ -125,23 +125,4 @@ public class Utilisateur extends Compte {
         return equals(compte);
     }
 
-    /**
-     * redéfinition du equals
-     * @param o
-     * @return un booléen, true si c'est égal, false sinon
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Utilisateur)) return false;
-        if (!super.equals(o)) return false;
-
-        Utilisateur that = (Utilisateur) o;
-
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-
-        return true;
-    }
-
-
 }
