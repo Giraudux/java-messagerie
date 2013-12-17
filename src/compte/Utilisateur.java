@@ -3,6 +3,8 @@ package compte;
 import messagerie.*;
 
 import javax.rmi.CORBA.Util;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -145,4 +147,12 @@ public class Utilisateur extends Compte {
         return equals(compte);
     }
 
+    /**
+     * Tri les message de la boîte selon l'ordre (Comparator) passé en paramètre.
+     *
+     * @param comparator l'ordre de tri
+     */
+    public void trierMessages(Comparator<Message> comparator) {
+        boiteReception.trierMessages(comparator);
+    }
 }

@@ -28,6 +28,7 @@ public class ListeDiffusion extends Compte {
     public ListeDiffusion(String adresse, boolean restreint, Utilisateur createur) throws Exception {
         super(adresse);
         this.comptes = new LinkedHashSet<Compte>();
+        ajouterCompte(createur);
         this.restreint = restreint;
         this.createur = createur;
     }

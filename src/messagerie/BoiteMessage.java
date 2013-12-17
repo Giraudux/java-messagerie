@@ -17,6 +17,9 @@ public class BoiteMessage {
     public static final Comparator<Message> ORDRE_DATES_DECROISSANTES = new DatesDecroissantesComparator();
     public static final Comparator<Message> ORDRE_NOMS_EMETTEURS_CROISSANTS = new NomsEmetteursCroissantsComparator();
     public static final Comparator<Message> ORDRE_NOMS_EMETTEURS_DECROISSANTS = new NomsEmetteursDecroissantsComparator();
+    public static final Comparator<Message> ORDRE_SUJETS_CROISSANTS = new SujetsCroissantsComparator();
+    public static final Comparator<Message> ORDRE_SUJETS_DECROISSANTS = new SujetsDecroissantsComparator();
+
     List<Message> messages;
 
     /**
@@ -102,7 +105,21 @@ public class BoiteMessage {
     public static class NomsEmetteursDecroissantsComparator implements Comparator<Message> {
         @Override
         public int compare(Message message1, Message message2) {
-            return message1.getEmetteur().getName().compareTo(message2.getEmetteur().getName());
+            return message2.getEmetteur().getName().compareTo(message1.getEmetteur().getName());
+        }
+    }
+
+    public static class SujetsCroissantsComparator implements Comparator<Message> {
+        @Override
+        public int compare(Message message1, Message message2) {
+            return message1.getSujet().compareTo(message2.getSujet());
+        }
+    }
+
+    public static class SujetsDecroissantsComparator implements Comparator<Message> {
+        @Override
+        public int compare(Message message1, Message message2) {
+            return message2.getSujet().compareTo(message1.getSujet());
         }
     }
 }

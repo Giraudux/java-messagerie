@@ -146,7 +146,9 @@ public class Systeme {
      */
     public boolean abonnerCompte(ListeDiffusion listeDiffusion, Compte compte, Utilisateur utilisateur) {
         if (utilisateur.equals(compte) || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
-            return listeDiffusion.ajouterCompte(compte);
+            if(!listeDiffusion.estRestreint() || utilisateur instanceof SuperUtilisateur || listeDiffusion.estCreateur(utilisateur)) {
+                return listeDiffusion.ajouterCompte(compte);
+            }
         }
         return false;
     }

@@ -2,7 +2,6 @@ package messagerie;
 
 import compte.Compte;
 import compte.Utilisateur;
-import sun.util.resources.CalendarData_cs;
 
 import java.util.Calendar;
 import java.util.Collection;
