@@ -75,7 +75,7 @@ public class Utilisateur extends Compte {
             } else if (compte instanceof ListeDiffusion) {
                 Set<Utilisateur> tmp = new LinkedHashSet<Utilisateur>();
                 if ((!((ListeDiffusion) compte).estRestreint()) || (message.getEmetteur() instanceof SuperUtilisateur) || (compte.contient(message.getEmetteur()))) {
-                    destinataires.addAll(compte.getUtilisateurs());
+                    tmp.addAll(compte.getUtilisateurs());
                 }
                 tmp.remove(message.getEmetteur());
                 destinataires.addAll(tmp);
