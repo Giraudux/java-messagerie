@@ -124,12 +124,4 @@ public class Utilisateur extends Compte {
 
         return true;
     }
-
-    /**
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        return Integer.parseInt(Integer.toString(adresse.hashCode()+login.hashCode()));
-    }
 }
